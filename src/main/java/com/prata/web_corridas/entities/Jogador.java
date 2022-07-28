@@ -1,11 +1,14 @@
 package com.prata.web_corridas.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Jogador implements Serializable {
@@ -17,6 +20,12 @@ public class Jogador implements Serializable {
 	private Long id;
 	private String nome;
 	private String senha;
+	
+	/*  Aqui está sendo feito o relacionamento de jogador com seus carros. Possibilitando que ao selecionar 1 jogador
+	 *  vejamos também seus carros podendo ser 0,1 ou muitos
+	 */
+	@OneToMany(mappedBy = "usuario")
+	private List<Carro> carros = new ArrayList<>();  //Como é uma coleção já instancia com ArrayList
 	
 	public Jogador() {
 		
@@ -52,6 +61,12 @@ public class Jogador implements Serializable {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+	
+	
+	public List<Carro> getCarros() {
+		return carros;
+	}
+
 
 	@Override
 	public int hashCode() {
@@ -78,6 +93,7 @@ public class Jogador implements Serializable {
 		return true;
 	}
 
+	
 
 	
 

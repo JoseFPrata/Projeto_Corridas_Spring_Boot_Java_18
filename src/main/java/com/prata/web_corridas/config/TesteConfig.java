@@ -7,7 +7,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import com.prata.web_corridas.entities.Carro;
 import com.prata.web_corridas.entities.Jogador;
+import com.prata.web_corridas.repositories.CarroRepository;
 import com.prata.web_corridas.repositories.JogadorRepository;
 
 @Configuration
@@ -24,6 +26,9 @@ public class TesteConfig implements CommandLineRunner{
 	@Autowired
 	private JogadorRepository jogadorRepository;
 	
+	@Autowired
+	private CarroRepository carroRepository;
+	
 
 	// Mas como fazer isso. Colocar a interface CommandLineRunner com implements CommandLineRunner na classe acima, importe a biblioteca e
 	// passe o mouse sobre implments para que o método abaixo public void run(String... args) seja adicionado
@@ -34,6 +39,14 @@ public class TesteConfig implements CommandLineRunner{
 		Jogador j2 = new Jogador(null, "Alex Green", "senha3");
 		
 		jogadorRepository.saveAll(Arrays.asList(j1,j2));
+		
+		
+		Carro cr1 = new Carro(null,  "ford", "maverick", "ano 78, super gastão e veloz ",j1);
+		Carro cr2 = new Carro(null, "Chevrolet", "Opala", "ano 76, super gastão e veloz ",j2);
+		
+		carroRepository.saveAll(Arrays.asList(cr1,cr2));
+		
+		
 		
 	} 
 	

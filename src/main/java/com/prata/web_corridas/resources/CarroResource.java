@@ -9,33 +9,33 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.prata.web_corridas.entities.Jogador;
-import com.prata.web_corridas.services.JogadorService;
+import com.prata.web_corridas.entities.Carro;
+import com.prata.web_corridas.services.CarroService;
 
 @RestController
-@RequestMapping(value = "/jogadores")
-public class JogadorResource {
+@RequestMapping(value = "/carros")
+public class CarroResource {
 	
 	/* Aqui foi feito só para teste do H@  @GetMapping     
-	public ResponseEntity<Jogador> findAll(){
-		Jogador j = new Jogador(1L, "jose santos", "senha1");  // Só para test se o REST está funcionando. Imprimirá em localhost:8080/jogadores
+	public ResponseEntity<Carro> findAll(){
+		Carro j = new Carro(1L, "jose santos", "senha1");  // Só para test se o REST está funcionando. Imprimirá em localhost:8080/jogadores
 		return ResponseEntity.ok().body(j);  
 		
 	} */
 	@Autowired    
-	private JogadorService service;  // dependência do service. Porém preciso registra-la no JogadorService para que o Spring reconheça essa dependência
+	private CarroService service;  // dependência do service. Porém preciso registra-la no CarroService para que o Spring reconheça essa dependência
 	
 	
 	@GetMapping
-	public ResponseEntity<List<Jogador>> findAll(){
-		List<Jogador> list = service.findAll();
+	public ResponseEntity<List<Carro>> findAll(){
+		List<Carro> list = service.findAll();
 		return ResponseEntity.ok().body(list);  
 		
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Jogador> findById(@PathVariable Long id){
-		Jogador obj = service.findById(id);
+	public ResponseEntity<Carro> findById(@PathVariable Long id){
+		Carro obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);  
 		
 	}
